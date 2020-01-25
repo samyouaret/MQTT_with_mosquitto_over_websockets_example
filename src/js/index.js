@@ -121,11 +121,11 @@ robot2.onMessageArrived = onArrived(ROBOOT_2);
 camera.onMessageArrived = onArrived(CAMERA);
 commandCenter.onMessageArrived = onArrived(COMMAND_CENTER);
 
-// a function that emulate sending of messages up to 100 message
+// a function that emulate sending of messages up to 100 message for each client
 function simulate() {
     // the commenad center is subscriber
     subscribe(COMMAND_CENTER);
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 100; i++) {
         setTimeout(function () {
             // publish messages to command center
             sendMessage(ROBOOT_1);

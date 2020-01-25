@@ -5,9 +5,6 @@ import javafx.scene.text.Text;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 
 public class Subscriber implements MqttCallback {
 
@@ -16,7 +13,7 @@ public class Subscriber implements MqttCallback {
     private MqttClient client;
     private Text textMessage;
 
-    public Subscriber(String uri,String clientId,Text textMessage) throws MqttException {
+    public Subscriber(String uri, String clientId, Text textMessage) throws MqttException {
 
 
         this.client = new MqttClient(uri, clientId, new MemoryPersistence());
