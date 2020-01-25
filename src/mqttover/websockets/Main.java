@@ -19,12 +19,6 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.net.URISyntaxException;
 
-/**
- *
- * @author ryan
- * JavaFX Tax Calculator Form Layout
- * and Basic JavaFX Button Event Handler
- */
 public class Main extends Application {
     private static Text textMessage =  new Text();
     private static Subscriber subscriber;

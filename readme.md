@@ -11,4 +11,4 @@ and on port 9001 for websockets.
 
 ## installation
 
-    git clone https://github.com/samyouaret/mqtt_over_sockets_example.git
+    git clone https://github.com/samyouaret/MQTT_with_mosquitto_over_websockets_example.git
