@@ -22,9 +22,9 @@ public class Subscriber implements MqttCallback {
         this.client = new MqttClient(uri, clientId, new MemoryPersistence());
         this.client.setCallback(this);
         this.client.connect();
-
         this.client.subscribe(this.topic, qos);
         this.textMessage = textMessage;
+
     }
 
 
@@ -65,4 +65,7 @@ public class Subscriber implements MqttCallback {
         this.textMessage.setText(messages.toString());
     }
 
+    public String getTopic() {
+        return topic;
+    }
 }

@@ -21,6 +21,7 @@ import java.net.URISyntaxException;
 
 public class Main extends Application {
     private static Text textMessage =  new Text();
+    private  static  TextField subscribeField = new TextField();
     private static Subscriber subscriber;
 
     public GridPane cratePane(){
@@ -41,10 +42,9 @@ public class Main extends Application {
         GridPane pane = cratePane();
         Scene scene = new Scene(pane, 400, 400);
 
-        Label total = new Label("topic:");
+        Label total = new Label(" topic:");
         pane.add(total, 0, 1);
-        final TextField SubscribeField = new TextField();
-        pane.add(SubscribeField, 1, 1);
+        pane.add(subscribeField, 1, 1);
 
         Button subscribeBtn = new Button("subscribe");
         HBox hbox = new HBox(10);
@@ -61,7 +61,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    subscriber.subscribe(SubscribeField.getText());
+                    subscriber.subscribe(subscribeField.getText());
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
@@ -72,7 +72,7 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    subscriber.unsubscribe(SubscribeField.getText());
+                    subscriber.unsubscribe(subscribeField.getText());
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +86,9 @@ public class Main extends Application {
 
     public static void main(String[] args) throws MqttException, URISyntaxException {
         textMessage =  new Text();
-        subscriber = new Subscriber("tcp://127.0.0.1:1883","panel",textMessage);
+        // connected with websockets protocol can be connected with tcp on port 1883
+        subscriber = new Subscriber("ws://127.0.0.1:9001","panel",textMessage);
+        subscribeField.setText(subscriber.getTopic());
         launch(args);
     }
 }
