@@ -39,7 +39,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Subscriber");
         GridPane pane = cratePane();
-        Scene scene = new Scene(pane, 300, 275);
+        Scene scene = new Scene(pane, 400, 400);
 
         Label total = new Label("topic:");
         pane.add(total, 0, 1);
