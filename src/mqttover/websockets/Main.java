@@ -88,6 +88,7 @@ public class Main extends Application {
     public static void main(String[] args) throws MqttException, URISyntaxException {
 
         // connected with websockets protocol can be replaced with tcp on port 1883
+        textMessage.setEditable(false);
         subscriber = new Subscriber("ws://127.0.0.1:9001","panel",textMessage);
         subscribeField.setText(subscriber.getTopic());
         launch(args);
