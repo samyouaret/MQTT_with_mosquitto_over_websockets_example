@@ -1,9 +1,10 @@
 package mqttover.websockets;
 
 
-import javafx.scene.text.Text;
+import javafx.scene.control.TextArea;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
 
 
 public class Subscriber implements MqttCallback {
@@ -11,9 +12,9 @@ public class Subscriber implements MqttCallback {
     private final int qos = 1;
     private String topic = "local/+";
     private MqttClient client;
-    private Text textMessage;
+    private TextArea textMessage;
 
-    public Subscriber(String uri, String clientId, Text textMessage) throws MqttException {
+    public Subscriber(String uri, String clientId, TextArea textMessage) throws MqttException {
 
 
         this.client = new MqttClient(uri, clientId, new MemoryPersistence());
@@ -57,9 +58,15 @@ public class Subscriber implements MqttCallback {
      * @see MqttCallback#messageArrived(String, MqttMessage)
      */
     public void messageArrived(String topic, MqttMessage message) throws MqttException {
-        StringBuilder messages =  new StringBuilder(this.textMessage.getText() + "\n");
-        messages.append(message.toString());
-        this.textMessage.setText(messages.toString());
+        StringBuilder messages =  new StringBuilder(message.toString() + "\n");
+        messages.append(textMessage.getText());
+        // fix exception raised from TextArea when mutliple succecive calls
+        try {
+            Thread.sleep(50);
+            this.textMessage.setText(messages.toString());
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getTopic() {

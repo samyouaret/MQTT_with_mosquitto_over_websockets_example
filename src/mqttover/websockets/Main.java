@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -20,7 +21,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import java.net.URISyntaxException;
 
 public class Main extends Application {
-    private static Text textMessage =  new Text();
+    private static TextArea textMessage =  new TextArea();
     private  static  TextField subscribeField = new TextField();
     private static Subscriber subscriber;
 
@@ -85,8 +86,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws MqttException, URISyntaxException {
-        textMessage =  new Text();
-        // connected with websockets protocol can be connected with tcp on port 1883
+
+        // connected with websockets protocol can be replaced with tcp on port 1883
         subscriber = new Subscriber("ws://127.0.0.1:9001","panel",textMessage);
         subscribeField.setText(subscriber.getTopic());
         launch(args);
