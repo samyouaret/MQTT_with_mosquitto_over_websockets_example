@@ -60,9 +60,10 @@ public class Subscriber implements MqttCallback {
     public void messageArrived(String topic, MqttMessage message) throws MqttException {
         StringBuilder messages =  new StringBuilder(message.toString() + "\n");
         messages.append(textMessage.getText());
-        // fix exception raised from TextArea when mutliple succecive calls
+
+        // delay to avoid exception raised by TextArea
         try {
-            Thread.sleep(50);
+            Thread.sleep(60);
             this.textMessage.setText(messages.toString());
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
